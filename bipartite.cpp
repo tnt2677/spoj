@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 typedef  long long ll;
 using namespace std;
-
+//geeks algo
 bool check_bfs(vector< set<int>> &graph,bool visited[],int start){
     bool red[graph.size()]={0};
     queue<int> q;bool ans=false;
