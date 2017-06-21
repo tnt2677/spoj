@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 typedef  long long ll;
 using namespace std;
-
+//refer geeks for geeks matrix chain multiplication
 int sum_value(int i,int j,int sum[]){
     if(!i)return sum[j]%100;
     return (sum[j]-sum[i-1])%100;
