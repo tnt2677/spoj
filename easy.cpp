@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 typedef  long long ll;
 using namespace std;
+//can be done in O(n)......try it
 
 int main(){
     ios::sync_with_stdio(false);
