@@ -3,15 +3,23 @@
 //use trie for better performance
 
 using namespace std;
+
 //checks if str1 is prefix of str2
 bool is_prefix(string &str1,string &str2){
+    //s1 & s2 contains the size of str1 & str2 
     int s1=str1.size();
     int s2=str2.size();
-    //if l1>l2 check if str2 is prefix of str1
+    
+    //if s1 > s2 check : if str2 is prefix of str1
     if(s1>s2)return is_prefix(str2,str1);
+    
+    //check if str1 is prefix of str2
+    //if mis-match : return false
     for(int i=0;i<s1;++i)
         if(str1[i]!=str2[i])
             return false;
+    
+    //else return true
     return true;
 }
 int main(){
