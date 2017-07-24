@@ -1,10 +1,5 @@
 #include <bits/stdc++.h>
 #define MAX (ll)100005
-#define SIZE 55
-#define vi vector<int>
-#define COUNT 1000005
-#define ii pair<int ,int>
-#define mp make_pair
 typedef long long ll;
 
 using namespace std;
@@ -12,9 +7,12 @@ struct node{
     ll max1;
     ll max2;
 };
-
+//seg_tree: contains the segment tree
 node seg_tree[MAX*4],null;
+//arr: contains the elements
+//n: no. of inputs
 ll arr[MAX],n=0;
+//construct_tree: constructs the tree
 void construct_tree(ll node_num,ll lo,ll hi){
     if(hi==lo){
         seg_tree[node_num].max1=arr[lo];
@@ -32,6 +30,7 @@ void construct_tree(ll node_num,ll lo,ll hi){
     seg_tree[node_num].max1=temp[3];
     seg_tree[node_num].max2=temp[2];
 }
+//Query: returns the node containing max1 & max2 of the required range
 node query(ll node_num,ll tlo,ll thi,ll lo,ll hi){
     if(lo>hi||tlo>hi||lo>thi){
         return null;
@@ -48,6 +47,7 @@ node query(ll node_num,ll tlo,ll thi,ll lo,ll hi){
     node x;x.max1=temp[3];x.max2=temp[2];
     return x;
 }
+//update_tree: point update for the tree 
 void update_tree(ll node_num,ll lo,ll hi,ll x,ll value){
     if(hi==lo){
         seg_tree[node_num].max1=value;
