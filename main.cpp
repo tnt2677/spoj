@@ -1,56 +1,51 @@
 #include <bits/stdc++.h>
 #define MAX (ll)100005
-#define SIZE 55
+#define SIZE 1005
 #define vi vector<int>
 #define inf (ll)11111111
 #define ii pair<int ,int>
 #define mp make_pair
 #define vii vector<ii>
+#define pb push_back
 typedef long long ll;
 
 using namespace std;
-int djikstra_path(vector<vii> &adj_list,int s,int v,int dest){
-    vi dist(v+1,INT_MAX);
-    dist[s]=0;
-    priority_queue<ii,vector<ii>,greater<ii> > pq;
-    pq.push(ii(0,s));
-    while(!pq.empty()){
-        ii front = pq.top(); pq.pop();
-        int d=front.first,u=front.second;
-        if(d>dist[u])continue;
-        for(int j=0;j<(int)adj_list[u].size();j++){
-            ii v = adj_list[u][j];
-            if(dist[u]+v.second< dist[v.first]){
-                dist[v.first] = dist[u]+v.second;
-                pq.push(ii(dist[v.first],v.first));
-            }
+char graph[SIZE][SIZE];
+int R=0,C=0;
+int Best_x,Best_y;
+int dr[]={0,1,0,-1};
+int dc[]={1,0,-1,0};
+
+int Search(int x,int y){
+    int last=0,best=0;
+    int best_x=x,best_y=y;
+    if(graph[x][y]=='.'){
+        graph[x][y]='x';
+        for(int d=0;d<4;++d){
+            last=Search(x+dr[d],y+dc[d]);
+            if(last>best){best=last,best_x=Best_x,best_y=Best_y;}
         }
+        Best_x=best_x,Best_y=best_y;
+        return best+1;
     }
-    return dist[dest];
+    return 0;
 }
 int main(){
     ios::sync_with_stdio(false);
     int t; cin>>t;
     while(t--){
-        int n; cin>>n;
-        map<string,int> mp;
-        vector<vii> adj_list(n+1);
-        for(int i=1;i<=n;++i){
-            string str; cin>>str;
-            mp[str]=i;
-            int p;cin>>p;
-            while(p--){
-                int index; cin>>index;
-                int wt; cin>>wt;
-                adj_list[i].push_back(ii(index,wt));
+        cin>>C>>R;
+        for(int i=0;i<R;++i)cin>>graph[i];
+        int x=1,y=1;
+        while(graph[x][y]=='#'){
+            if(x<C-1)x++;
+            else{
+                x=1;y++;
             }
         }
-        int x; cin>>x;
-        while(x--){
-            string s1,s2;
-            cin>>s1>>s2;
-            cout<<djikstra_path(adj_list,mp[s1],n,mp[s2])<<"\n";
-        }
+        Search(x,y);
+        for(int i=0;i<R;i++)for(int j=0;j<C;++j)if(graph[i][j]=='x')graph[i][j]='.';else if(graph[i][j]=='.')cout<<"error";
+        cout<<"Maximum rope length is "<<   Search(Best_x,Best_y)-1<<".\n";
     }
     return 0;
 }
