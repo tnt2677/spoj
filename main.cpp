@@ -2,7 +2,18 @@
 #define MAX (ll)30005
 typedef long long ll;
 
+//In this problem, we are given a string containing parenthesis (open and closed), which requires making updates to individual parenthesis (changing an open parenthesis to closed or vice versa), and checking if the whole string represents a correct parenthesization.
+//Only 2 things are needed in each segment tree node:
+
+//The number of unmatched open parenthesis in this range.
+//The number of unmatched closed parenthesis in this range.
+//When we merge the counts, we need to find the minimum of the open brackets on left subtree, and closed brackets on the right subtree.
+
+//Then, we add the open and closed counts, and subtract the minimum count found above.
+
 using namespace std;
+//count_open:unbalanced open brackets
+//count_closed:unbalanced closed brackets
 struct node{
     ll count_open;
     ll count_close;
