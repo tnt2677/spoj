@@ -1,12 +1,8 @@
 #include <bits/stdc++.h>
-#define MAX 55
-#define ii pair<int,int >
-#define vi vector<int>
-#define vii vector<pair<int,int> >
-typedef long long ll;
 using namespace std;
-
+//ref:https://www.quora.com/How-can-the-problem-Ones-and-zeros-on-SPOJ-be-solved-using-BFS#
 map<int,string> mp;
+//returns modulos in biginteger
 int mod(const string & str,int n){
     int ans=0;
     for(int i=0;i<(int)str.size();++i){
@@ -14,6 +10,10 @@ int mod(const string & str,int n){
     }
     return ans;
 }
+//returns first no. containing only of ones and zero's
+//say str%n gives "i"
+//if i has been seen earlier then ignore as it can't possibly give the right answer
+//else mark current stste as visited
 string func(int n){
     queue<string> q;q.push("1");
     mp.clear();
