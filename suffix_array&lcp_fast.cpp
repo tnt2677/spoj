@@ -1,15 +1,13 @@
 #include <bits/stdc++.h>
 #define MAX 50005
 #define ii pair<int,int>
-#define vi vector<int>
-#define vii vector<pair<int,int>>
-#define inf 10000000LL
 typedef long long ll;
 using namespace std;
 struct node{
     int index;
     ii ra;
 };
+//cmp to sort according to (ii)ra
 bool cmp(const node &lhs,const node &rhs){
     return lhs.ra<rhs.ra;
 }
