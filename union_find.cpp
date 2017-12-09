@@ -34,7 +34,7 @@ public:
     
     //find_set: returns the representative element of current node
     int find_set(int i){
-        return p[i]==i? i: p[i]=find_set(p[i]);
+        return p[i]==i? i: p[i]=find_set(p[i]);//path compression:-whenever you find parent of node make it a direct attachment
         }
     
     //returns true if both belong to the same set,false other-wise
