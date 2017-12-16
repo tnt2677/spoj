@@ -1,26 +1,23 @@
 #include <bits/stdc++.h>
 #define MAX 10009
-#define SIZE 100009
-#define inf 1000005LL
-#define ii pair<int,int>
-#define vi vector<int>
-#define vii vector<pair<int,int>>
-typedef long long ll;
 using namespace std;
-bool dp[MAX][1025];
+//dp[n][number]
+//i.e. if upto element "n" are we able to make "number"
+bool dp[MAX][1024];
 int arr[MAX];
 int fun(int n,int k){
     memset(dp,0,sizeof dp);
-    dp[0][0]=true;cout<<dp[0][1024]<<endl;
+    dp[0][0]=true;
     for(int i=1;i<=n;++i){
-        for(int j=0;j<1025;++j){
+        for(int j=0;j<1025;++j)
+            //Most imp part
+            // dp[i,j] can only be present if either dp[i-1,j] is true or
+            // we can make j using arr[i] 
             dp[i][j]=dp[i-1][j]|dp[i-1][j^arr[i]];
-            if(dp[i][j])cout<<j<<" "<<arr[i]<<" "<< int(j^arr[i]) <<endl;
-            }
     }
     int ans=0;
     for(int i=0;i<=1024;++i)
-        if(dp[n][i])cout<<i<<" ";//ans=max(ans,k^i);
+        if(dp[n][i])ans=max(ans,k^i);
     return ans;
 }
 int main(){
