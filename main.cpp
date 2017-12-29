@@ -1,15 +1,8 @@
 #include <bits/stdc++.h>
 #define MAX 5005
-#define MOD 1000000007
-#define inf 1000005LL
-#define ii pair<int,int>
-#define vi vector<int>
-#define vii vector<pair<int,int>>
-#define endl "\n"
-typedef long long ll;
+
 using namespace std;
-int arr[MAX];
-int temp[MAX],Arr[MAX];
+int arr[MAX],temp[MAX];
 
 int merge_count(int lo,int mid,int hi){
     int ans=0,i=lo,j=mid+1,k=lo;
@@ -33,19 +26,8 @@ int main(){
     ios::sync_with_stdio(false);
     cout.tie(NULL);cin.tie(NULL);
     int n;cin>>n;
-    for(int i=0;i<n;++i){cin>>arr[i];Arr[i]=arr[i];}
+    for(int i=0;i<n;++i)cin>>arr[i];
     int ans=sort_count(0,n-1);
-    int t;cin>>t;
-    while(t--){
-        int i,j;cin>>i>>j;
-        int num=(j-i+1)*(j-i)/2;
-        //reverse(Arr+i-1,Arr+j);
-        //for(int k=i-1;k<=j-1;++k)arr[k]=Arr[k];int x=num-sort_count(i-1,j-1);
-        ans=(ans%2+num%2)%2;
-        if(ans%2==0)cout<<"even"<<endl;
-        else cout<<"odd"<<endl;
-    }
+    cout<<ans<<endl;
     return 0;
 }
-//use ctrl+j for , forb
-// alt + home ,alt+ end
